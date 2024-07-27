@@ -4,9 +4,9 @@
       {{user.name}}
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Username: {{user.username}}</li>
-      <li class="list-group-item">Email: {{user.email}}</li>
-      <li class="list-group-item">Phone: {{user.phone}}</li>
+      <li class="list-group-item">Username: <span class="fw-bold">{{user.username}}</span></li>
+      <li class="list-group-item">Email: <span class="fw-bold">{{user.email}}</span></li>
+      <li class="list-group-item">Phone: <span class="fw-bold">{{user.phone}}</span></li>
     </ul>
   </div>
 </template>
