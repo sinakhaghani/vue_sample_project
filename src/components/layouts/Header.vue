@@ -16,7 +16,7 @@
             </li>
 
             <li class="nav-item">
-              <router-link class="nav-link" to="/post">Posts</router-link>
+              <router-link class="nav-link" to="/posts">Posts</router-link>
             </li>
           </ul>
         </div>
