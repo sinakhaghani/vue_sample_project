@@ -1,38 +1,39 @@
 <template>
-  <h1>users index</h1>
 
-        <div v-if="loading" class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      <div v-else class="col-md-4" v-for="user in users" :key="user.id">
+  <h1>users show</h1>
+      <div v-if="loading" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div v-else class="col-md-4" >
         <UserCardView :user="user"></UserCardView>
       </div>
-
 </template>
 
 <script>
 import axios from 'axios';
 import {ref} from "vue";
 import UserCardView from '../../users/cardView'
+import {useRoute} from 'vue-router';
 
 export default {
- // name: "index",
+  // name: "index",
   components:{
     UserCardView
   },
 
   setup()
   {
-    const users = ref([]);
+    const user = ref({});
     const loading = ref(true);
+    const route = useRoute();
 
-    function getUsers()
+    function getUser()
     {
-      axios.get('https://jsonplaceholder.typicode.com/users')
+      axios.get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
           .then(function (response) {
-            users.value = response.data;
+            user.value = response.data;
             loading.value = false;
-           // console.log(response);
+            // console.log(response);
           })
           .catch(function (error) {
             // handle error
@@ -43,8 +44,8 @@ export default {
           });
     }
 
-    getUsers()
-    return {users, loading}
+    getUser()
+    return {user, loading}
   },
 }
 </script>
