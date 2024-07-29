@@ -1,6 +1,11 @@
 <template>
   <h1>posts index</h1>
 
+  <div>
+    <router-link class="btn btn-dark" :to="{name: 'createPost'}">
+      create post
+    </router-link>
+  </div>
         <div v-if="loading" class="spinner-border" role="status">
           <span class="sr-only">Loading...</span>
         </div>
