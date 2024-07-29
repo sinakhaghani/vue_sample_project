@@ -7,7 +7,9 @@
       <div v-else class="col-md-4" v-for="post in posts" :key="post.id">
         <div class="card">
           <div class="card-header">
+            <router-link :to="{name:'postId', params: {id : post.id} }">
               {{post.title}}
+            </router-link>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Body: <span class="fw-bold">{{post.body}}</span></li>

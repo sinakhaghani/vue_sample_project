@@ -5,6 +5,7 @@ import UserIndex from './components/pages/users/Index';
 import UserShow from './components/pages/users/Show';
 import PostTemplate from './components/pages/posts/Template';
 import PostIndex from './components/pages/posts/Index';
+import PostShow from './components/pages/posts/Show';
 
 const routes = [
     {path: '/', name: 'home', component: Home},
@@ -13,7 +14,8 @@ const routes = [
             {path: '/users/:id', name: 'userId', component: UserShow}
         ]},
     {path: '/posts', name: 'posts', component: PostTemplate, children:[
-            {path: '', name: 'posts', component: PostIndex}
+            {path: '', name: 'posts', component: PostIndex},
+            {path: '/posts/:id', name: 'postId', component: PostShow}
         ]}
 ];
 

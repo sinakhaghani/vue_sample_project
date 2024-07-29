@@ -1,37 +1,46 @@
 <template>
 
-  <h1>users show</h1>
+  <h1>posts show</h1>
       <div v-if="loading" class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
-      <div v-else class="col-md-4" >
-        <UserCardView :user="user"></UserCardView>
-      </div>
+        <div v-else class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              {{post.title}}
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Body: <span class="fw-bold">{{post.body}}</span></li>
+            </ul>
+
+            <div class="card-footer">
+              <button class="btn btn-sm btn-danger me-3">Delete</button>
+              <button class="btn btn-sm btn-dark">Edit</button>
+            </div>
+
+          </div>
+        </div>
 </template>
 
 <script>
 import axios from 'axios';
 import {ref} from "vue";
-import UserCardView from '../../users/cardView'
 import {useRoute} from 'vue-router';
 
 export default {
   // name: "index",
-  components:{
-    UserCardView
-  },
 
   setup()
   {
-    const user = ref({});
+    const post = ref({});
     const loading = ref(true);
     const route = useRoute();
 
     function getUser()
     {
-      axios.get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
+      axios.get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
           .then(function (response) {
-            user.value = response.data;
+            post.value = response.data;
             loading.value = false;
             // console.log(response);
           })
@@ -45,7 +54,7 @@ export default {
     }
 
     getUser()
-    return {user, loading}
+    return {post, loading}
   },
 }
 </script>
