@@ -18,6 +18,12 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Body: <span class="fw-bold">{{post.body}}</span></li>
+            <li class="list-group-item">
+              <router-link class="btn btn-primary" :to="{name:'editPost', params: {id : post.id} }">
+              Edit
+            </router-link>
+<!--              <button @click="deletePost" class="btn btn-danger">Delete</button>-->
+            </li>
           </ul>
         </div>
       </div>
@@ -40,6 +46,10 @@ export default {
     const posts = ref([]);
     const loading = ref(true);
 
+    /*deletePost()
+    {
+
+    }*/
     function getPosts()
     {
       axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -57,7 +67,8 @@ export default {
           });
     }
 
-    getPosts()
+    getPosts();
+   // deletePost();
     return {posts, loading}
   },
 }

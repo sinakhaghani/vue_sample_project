@@ -7,6 +7,7 @@ import PostTemplate from './components/pages/posts/Template';
 import PostIndex from './components/pages/posts/Index';
 import PostShow from './components/pages/posts/Show';
 import PostCreate from './components/pages/posts/Create';
+import PostEdit from './components/pages/posts/Edit';
 
 const routes = [
     {path: '/', name: 'home', component: Home},
@@ -17,7 +18,8 @@ const routes = [
     {path: '/posts', name: 'posts', component: PostTemplate, children:[
             {path: '', name: 'posts', component: PostIndex},
             {path: '/posts/:id', name: 'postId', component: PostShow},
-            {path: 'create', name: 'createPost', component: PostCreate}
+            {path: 'create', name: 'createPost', component: PostCreate},
+            {path: 'edit/:id', name: 'editPost', component: PostEdit}
         ]}
 ];
 

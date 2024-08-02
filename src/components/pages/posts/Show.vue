@@ -14,8 +14,10 @@
             </ul>
 
             <div class="card-footer">
-              <button class="btn btn-sm btn-danger me-3">Delete</button>
-              <button class="btn btn-sm btn-dark">Edit</button>
+              <button class="btn btn-sm btn-danger me-3" @click="postDelete">Delete</button>
+              <router-link class="btn btn-primary" :to="{name:'editPost', params: {id : post.id} }">
+                Edit
+              </router-link>
             </div>
 
           </div>
@@ -26,6 +28,7 @@
 import axios from 'axios';
 import {ref} from "vue";
 import {useRoute} from 'vue-router';
+import Swal from "sweetalert2";
 
 export default {
   // name: "index",
@@ -35,6 +38,29 @@ export default {
     const post = ref({});
     const loading = ref(true);
     const route = useRoute();
+
+    function postDelete()
+    {
+      axios.delete(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+          .then(function () {
+           // post.value = response.data;
+           // loading.value = false;
+            Swal.fire({
+              title: 'Delete',
+              text: 'deleted post',
+              icon: 'warning',
+              confirmButtonText: 'ok'
+            })
+            // console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+    }
 
     function getUser()
     {
@@ -54,7 +80,7 @@ export default {
     }
 
     getUser()
-    return {post, loading}
+    return {post, loading, postDelete}
   },
 }
 </script>
